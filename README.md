@@ -488,19 +488,13 @@ VITE_DEBUG_MODE=false
 - Research Supervisors
 - Beta Testing Community
 
----
-
-## 📜 License
-
-This project is licensed under the **MIT License** - see [LICENSE](LICENSE) file for details.
 
 ---
 
 ## 📞 Support & Contact
 
-- 📧 **Email**: mirza.sohaibbaig@gmail.com
+- 📧 **Email**: sohaibbaigmughal@gmail.com
 - 🐙 **GitHub**: [@MirzaSohaibBaig-dev](https://github.com/MirzaSohaibBaig-dev)
-- 📱 **LinkedIn**: [Your LinkedIn Profile]
 
 ---
 
@@ -509,8 +503,8 @@ This project is licensed under the **MIT License** - see [LICENSE](LICENSE) file
 > **Final Year Project (FYP)**  
 > Multimodal Stress Detection System
 
-- **Institution**: [University Name]
-- **Academic Year**: 2025-2026
+- **Institution**: Barani Institute of Information Technology
+- **Academic Year**: 2023-2026
 - **Project Type**: Full-Stack Web Application + AI/ML System
 - **Status**: 🟢 Active Development
 
