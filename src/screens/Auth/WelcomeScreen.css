@@ -1,0 +1,52 @@
+/* src/Auth/welcomescreen.css */
+
+.welcome-container {
+  height: 100vh;
+  background-color: #48D1E4; /* Dost ka theme color */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  font-family: 'Inter', sans-serif;
+}
+
+.welcome-logo {
+  width: 350px; /* Reference size */
+  height: auto;
+  margin-bottom: 20px;
+  /* Desktop par image ko smooth dikhane ke liye */
+  object-fit: contain;
+}
+
+.welcome-title {
+  font-size: 2.5rem; /* Web ke liye bara size */
+  font-weight: bold;
+  color: white;
+  margin-bottom: 8px;
+}
+
+.welcome-subtitle {
+  font-size: 1.2rem;
+  color: #EFFFFF;
+  margin-bottom: 40px;
+  letter-spacing: 1px;
+}
+
+.start-btn {
+  background-color: white;
+  color: #48D1E4; /* Background color ke sath match */
+  padding: 12px 60px; /* Desktop friendly width */
+  border-radius: 30px;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.start-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}

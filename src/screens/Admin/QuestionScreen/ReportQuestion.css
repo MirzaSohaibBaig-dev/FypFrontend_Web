@@ -1,0 +1,308 @@
+/* ===== THEME (match previous report screens) ===== */
+:root {
+  --rq-cyan: #48D1E4;
+  --rq-blue: #0891b2;
+  --rq-bg: #f5fbfd;
+  --rq-surface: #ffffff;
+  --rq-surface-2: #f7fcfe;
+  --rq-border: rgba(15, 90, 102, 0.14);
+  --rq-border-strong: rgba(15, 90, 102, 0.22);
+  --rq-text: #0f2a33;
+  --rq-muted: rgba(15, 42, 51, 0.68);
+  --rq-shadow-sm: 0 1px 2px rgba(15, 42, 51, 0.06);
+  --rq-shadow-md: 0 10px 24px rgba(15, 42, 51, 0.10);
+  --rq-radius-lg: 14px;
+  --rq-radius-xl: 16px;
+  --rq-header-h: 76px;
+}
+
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== MAIN CONTAINER ===== */
+.report-screen-container {
+  min-height: 100vh;
+  background: radial-gradient(1200px 600px at 20% -10%, rgba(72, 209, 228, 0.16) 0%, transparent 60%),
+              radial-gradient(900px 520px at 85% 0%, rgba(8, 145, 178, 0.12) 0%, transparent 55%),
+              var(--rq-bg);
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--rq-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding-top: calc(var(--rq-header-h) + 34px);
+}
+
+/* ===== LOADING STATE ===== */
+.report-screen-container.loading-state {
+  height: 100vh;
+  padding-top: 0;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(180deg, var(--rq-cyan) 0%, var(--rq-blue) 115%);
+  color: #ffffff;
+}
+
+.report-screen-container.loading-state p {
+  margin-top: 10px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+/* ===== HEADER ===== */
+.report-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--rq-header-h);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  padding: 16px 32px;
+  background: linear-gradient(180deg, var(--rq-cyan) 0%, var(--rq-blue) 115%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.20);
+}
+
+/* ===== BACK BUTTON ===== */
+.report-back-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  padding: 9px 14px;
+  border-radius: 12px;
+  color: rgba(15, 42, 51, 0.95);
+  font-weight: 650;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 160ms ease, transform 160ms ease, border-color 160ms ease;
+}
+
+.report-back-btn:hover {
+  background: #ffffff;
+  border-color: rgba(255, 255, 255, 0.72);
+  transform: translateY(-1px);
+}
+
+.report-back-btn svg {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+}
+
+.report-back-btn:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, 0.35);
+  outline-offset: 2px;
+}
+
+/* ===== LOGO ===== */
+.report-web-logo {
+  height: 46px;
+  width: auto;
+  filter: drop-shadow(0 1px 1px rgba(15, 42, 51, 0.25));
+}
+
+/* ===== MAIN CONTENT ===== */
+.report-content {
+  max-width: 1360px;
+  margin: auto;
+  padding: 0 32px 70px;
+}
+
+/* ===== TITLE ===== */
+.report-title {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 850;
+  color: var(--rq-text);
+  margin: 0 0 10px;
+  letter-spacing: -0.6px;
+}
+
+/* ===== SUMMARY ===== */
+.report-summary-text {
+  text-align: center;
+  color: var(--rq-muted);
+  font-size: 16px;
+  margin-bottom: 22px;
+}
+
+.report-summary-text p + p {
+  margin-top: 6px;
+}
+
+/* ===== GRID ===== */
+.report-grid-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ===== CARD BASE ===== */
+.report-white-card {
+  background: linear-gradient(180deg, rgba(72, 209, 228, 0.06) 0%, rgba(255, 255, 255, 0.92) 55%, rgba(255, 255, 255, 1) 100%);
+  padding: 32px 34px;
+  border-radius: var(--rq-radius-xl);
+  border: 1px solid var(--rq-border);
+  box-shadow: var(--rq-shadow-sm);
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+}
+
+.report-white-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--rq-border-strong);
+  box-shadow: var(--rq-shadow-md);
+}
+
+/* ===== QUESTION CARD (IMPORTANT LOOK) ===== */
+.full-width {
+  border-left: 4px solid var(--rq-cyan);
+}
+
+/* ===== CARD HEADING ===== */
+.card-heading {
+  font-size: 19px;
+  font-weight: 800;
+  color: rgba(15, 42, 51, 0.92);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-heading svg {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  color: var(--rq-blue);
+}
+
+/* ===== CARD BODY ===== */
+.card-body-text {
+  font-size: 16px;
+  color: rgba(15, 42, 51, 0.78);
+  line-height: 1.75;
+}
+
+/* ===== COMPARISON GRID ===== */
+.comparison-flex {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 16px;
+}
+
+/* ===== SECTION TITLE ===== */
+.section-title {
+  font-size: 17px;
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: rgba(15, 42, 51, 0.92);
+}
+
+/* ===== ATTEMPTS ===== */
+.attempt-count {
+  font-size: 14px;
+  color: var(--rq-muted);
+  margin-bottom: 12px;
+}
+
+/* ===== STRESS BOX ===== */
+.stress-result {
+  background: linear-gradient(135deg, rgba(72, 209, 228, 0.16), rgba(8, 145, 178, 0.10));
+  border: 1px solid rgba(8, 145, 178, 0.18);
+  padding: 16px 18px;
+  border-radius: 12px;
+  font-size: 15px;
+  margin-bottom: 14px;
+  font-weight: 650;
+  color: rgba(15, 42, 51, 0.92);
+}
+
+/* ===== STATS GRID ===== */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+/* ===== STAT BOX (each metric in its own box) ===== */
+.stat-box {
+  background: linear-gradient(180deg, rgba(72, 209, 228, 0.10), rgba(255, 255, 255, 0.92));
+  padding: 16px 16px;
+  border-radius: var(--rq-radius-lg);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid rgba(15, 90, 102, 0.12);
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+  min-height: 64px;
+}
+
+.stat-box svg {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  color: var(--rq-blue);
+}
+
+.stat-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.stat-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--rq-muted);
+  letter-spacing: 0.2px;
+  line-height: 1.1;
+}
+
+.stat-value {
+  margin-top: 4px;
+  font-size: 16px;
+  font-weight: 800;
+  color: rgba(15, 42, 51, 0.92);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.stat-box:hover {
+  background: rgba(72, 209, 228, 0.08);
+  border-color: rgba(15, 90, 102, 0.18);
+  transform: translateY(-1px);
+}
+
+/* ===== BOTH CARDS SAME STYLE ===== */
+.highlight-cyan,
+.highlight-dark {
+  border-top: 4px solid var(--rq-cyan);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .comparison-flex {
+    grid-template-columns: 1fr;
+  }
+
+  .report-title {
+    font-size: 30px;
+  }
+
+  .report-content {
+    padding: 0 18px 50px;
+  }
+
+  .report-header {
+    padding: 12px 18px;
+  }
+}

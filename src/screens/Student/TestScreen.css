@@ -1,0 +1,377 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+:root {
+  --primary: #48D1E4;
+  --primary-dark: #0891b2;
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --text: #0f172a;
+  --muted: #64748b;
+  --border: #e2e8f0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== MAIN WRAPPER ===== */
+.test-screen-wrapper {
+  min-height: 100vh;
+  background-color: var(--bg);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== HEADER ===== */
+.test-nav-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+  /* STRONG CYAN HEADER */
+  background: var(--primary);
+  border-bottom: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.back-btn-ui {
+  background: var(--card);
+  border: 1px solid var(--card);
+  color: var(--primary-dark);
+  padding: 10px 20px;
+  border-radius: 99px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.back-btn-ui:hover {
+  background: var(--bg);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.test-logo-ui {
+  width: 130px;
+  /* Make logo white so it pops on cyan header */
+  filter: brightness(0) invert(1);
+}
+
+/* ===== MAIN CONTENT ===== */
+.test-main-content {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 60px 40px;
+  flex: 1;
+}
+
+/* ===== TOP HEADER (HERO) ===== */
+.test-header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 48px;
+  /* MASSIVE CYAN INJECTION HERE */
+  background: var(--primary);
+  padding: 48px 64px;
+  border-radius: 20px;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Add a subtle glow behind the illustration */
+.test-header-section::after {
+  content: '';
+  position: absolute;
+  right: 10%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 300px;
+  height: 300px;
+  background: rgba(255, 255, 255, 0.15);
+  filter: blur(60px);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.text-content {
+  position: relative;
+  z-index: 1;
+}
+
+.text-content h1 {
+  font-size: 40px;
+  font-weight: 900;
+  color: white;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+
+.text-content p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 18px;
+  max-width: 650px;
+  line-height: 1.6;
+}
+
+/* This is likely the icon they mentioned. Needs to be visible! */
+.eeg-illustrate {
+  width: 240px;
+  position: relative;
+  z-index: 1;
+  /* If it's a white image, it will now be perfectly visible on the cyan background */
+  filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.15));
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0px); }
+}
+
+/* ===== GRID ===== */
+.test-grid-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+/* ===== QUESTIONS CARD ===== */
+.questions-card {
+  background: var(--card);
+  border-radius: 20px;
+  padding: 40px;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  min-height: 400px;
+}
+
+/* FULL WIDTH MODE (no questions case) */
+.questions-card.full-width {
+  grid-column: span 2;
+  text-align: center;
+}
+
+/* HEADER */
+.card-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.card-top h3 {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+/* SCROLL */
+.questions-scroll-area {
+  max-height: 500px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+/* EMPTY STATE */
+.no-questions {
+  padding: 60px;
+  text-align: center;
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 16px;
+  background: var(--bg);
+  border-radius: 12px;
+  border: 1px dashed var(--border);
+}
+
+/* QUESTION ITEM */
+.web-question-item {
+  background: var(--bg);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+  border: 1px solid var(--border);
+  transition: all 0.2s ease;
+}
+
+.web-question-item:hover {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(72, 209, 228, 0.1);
+}
+
+.q-index {
+  font-weight: 800;
+  color: var(--primary-dark);
+  margin-bottom: 8px;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.q-desc {
+  font-size: 16px;
+  color: var(--text);
+  margin-bottom: 12px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.q-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+/* ===== CONTROL CARD ===== */
+.start-control-card {
+  background: var(--card);
+  border-radius: 20px;
+  padding: 40px;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  position: sticky;
+  top: 100px;
+}
+
+/* WARNING */
+.warning-box {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 32px;
+}
+
+.warning-box h4 {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.warning-box p {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* BUTTON (MAIN CTA) */
+.web-primary-start-btn {
+  width: 100%;
+  padding: 20px;
+  border-radius: 12px;
+  border: none;
+  background: var(--primary);
+  color: white;
+  font-size: 18px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.web-primary-start-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  filter: brightness(1.05);
+}
+
+.web-primary-start-btn:active {
+  transform: translateY(0);
+}
+
+.web-primary-start-btn.loading {
+  background: var(--border);
+  color: var(--muted);
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+  filter: none;
+}
+
+/* ===== LOADER ===== */
+.test-loader-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary);
+  color: white;
+}
+
+.spin-icon {
+  animation: spin 1s linear infinite;
+  color: white;
+  width: 48px;
+  height: 48px;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+/* ===== SCROLLBAR ===== */
+.questions-scroll-area::-webkit-scrollbar {
+  width: 6px;
+}
+.questions-scroll-area::-webkit-scrollbar-track {
+  background: var(--bg);
+  border-radius: 10px;
+}
+.questions-scroll-area::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 10px;
+}
+.questions-scroll-area::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .test-main-content {
+    padding: 30px 20px;
+  }
+
+  .test-header-section {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px 20px;
+    gap: 30px;
+  }
+
+  .test-grid-container {
+    grid-template-columns: 1fr;
+  }
+
+  .start-control-card {
+    position: relative;
+    top: 0;
+  }
+}

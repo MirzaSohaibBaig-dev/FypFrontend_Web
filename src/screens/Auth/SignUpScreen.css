@@ -1,0 +1,254 @@
+/* SignUpScreen.css - Simple & Clean UI with Top Cyan Bar */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.register-container {
+  min-height: 100vh;
+  background-color: #f5fbfd; /* Light background so the card pops */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 120px 40px 60px; /* Space for the top bar */
+  font-family: 'Inter', -apple-system, sans-serif;
+}
+
+/* ========== TOP CYAN BLUE BAR ========== */
+.register-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background-color: #48D1E4; /* Cyan Blue Top Bar */
+  display: flex;
+  justify-content: center; /* Center content if any, absolute elements handle sides */
+  align-items: center;
+  z-index: 100;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.back-btn {
+  position: absolute;
+  left: 50px;
+  background: white;
+  border: none;
+  color: #48D1E4;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1rem;
+  padding: 0.6rem 1.5rem;
+  border-radius: 8px;
+  transition: opacity 0.3s ease;
+}
+
+.back-btn:hover {
+  opacity: 0.9;
+}
+
+.mini-logo {
+  position: absolute;
+  right: 50px;
+  height: 50px;
+  width: auto;
+  filter: brightness(0) invert(1); /* White logo on cyan background */
+}
+
+/* ========== WIDE REGISTRATION CARD ========== */
+.register-card {
+  background: white;
+  width: 100%;
+  max-width: 1100px; /* Wide card format */
+  border-radius: 20px;
+  padding: 50px 60px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.form-title {
+  color: #0f2a33;
+  font-size: 2rem;
+  margin-bottom: 40px;
+  text-align: center;
+  font-weight: 800;
+}
+
+.register-form {
+  width: 100%;
+}
+
+/* 2 Columns Grid for Wide Form */
+.input-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 30px;
+}
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.input-field.full {
+  margin-bottom: 30px;
+}
+
+.input-field label {
+  font-weight: 700;
+  color: #1e293b;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+}
+
+/* ========== INPUT FIELDS ========== */
+.input-field input {
+  background: #F0FDFF;
+  border: 2px solid #d4f1f5;
+  border-radius: 12px;
+  height: 60px;
+  padding: 0 20px;
+  font-size: 1rem;
+  outline: none;
+  color: #0f172a;
+  font-weight: 500;
+}
+
+.input-field input:focus {
+  border-color: #48D1E4;
+  background: white;
+}
+
+/* Password Wrapper */
+.pass-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.pass-input input {
+  width: 100%;
+  padding-right: 60px;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 20px;
+  cursor: pointer;
+  color: #48D1E4;
+}
+
+/* ========== GENDER CONTAINER ========== */
+.gender-container {
+  display: flex;
+  gap: 40px;
+  height: 60px;
+  align-items: center;
+  background: #F0FDFF;
+  padding: 0 20px;
+  border-radius: 12px;
+  border: 2px solid #d4f1f5;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #334155;
+  font-size: 1rem;
+}
+
+.radio-label input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  accent-color: #48D1E4;
+}
+
+/* ========== TERMS CONTAINER ========== */
+.terms-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 40px 0 30px;
+  font-weight: 500;
+}
+
+.terms-container input[type="checkbox"] {
+  width: 22px;
+  height: 22px;
+  accent-color: #48D1E4;
+  cursor: pointer;
+}
+
+.terms-container label {
+  font-size: 1.1rem;
+  color: #334155;
+}
+
+/* ========== SUBMIT BUTTON ========== */
+.reg-submit {
+  width: 100%;
+  max-width: 450px;
+  height: 65px;
+  background: #48D1E4;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 1.3rem;
+  cursor: pointer;
+  margin: 0 auto;
+  display: block;
+}
+
+.reg-submit:hover {
+  background: #26C6DA;
+}
+
+.reg-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 900px) {
+  .register-card {
+    padding: 40px;
+  }
+  .input-row {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .register-header {
+    height: 60px;
+  }
+  .back-btn {
+    left: 20px;
+    padding: 0.4rem 1rem;
+    font-size: 0.9rem;
+  }
+  .mini-logo {
+    right: 20px;
+    height: 35px;
+  }
+  .input-row {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .register-card {
+    padding: 30px 20px;
+  }
+  .register-container {
+    padding-top: 90px;
+  }
+}

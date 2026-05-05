@@ -1,0 +1,262 @@
+/* --- AddStudent.css - Absolute Corner Logo Fix --- */
+
+.add-student-container {
+  --as-cyan: #48D1E4;
+  --as-blue: #0891b2;
+  --as-bg: #f5fbfd;
+  --as-surface: #ffffff;
+  --as-surface-2: #f7fcfe;
+  --as-border: rgba(15, 90, 102, 0.14);
+  --as-border-strong: rgba(15, 90, 102, 0.22);
+  --as-text: #0f2a33;
+  --as-muted: rgba(15, 42, 51, 0.68);
+  --as-shadow-sm: 0 1px 2px rgba(15, 42, 51, 0.06);
+  --as-shadow-md: 0 10px 24px rgba(15, 42, 51, 0.10);
+
+  min-height: 100vh;
+  background: radial-gradient(1200px 600px at 20% -10%, rgba(72, 209, 228, 0.16) 0%, transparent 60%),
+              radial-gradient(900px 520px at 85% 0%, rgba(8, 145, 178, 0.12) 0%, transparent 55%),
+              var(--as-bg);
+  display: flex;
+  flex-direction: column;
+  position: relative; /* Base for logo position: absolute */
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--as-text);
+}
+
+/* 🚀 HEADER: Aligning Back Button */
+.add-student-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 40px;
+  box-sizing: border-box;
+  min-height: 100px;
+  background: linear-gradient(180deg, var(--as-cyan) 0%, var(--as-blue) 115%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.add-student-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.96);
+  color: rgba(15, 42, 51, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  padding: 9px 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  z-index: 10;
+  font-size: 13px;
+  transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+}
+
+.add-student-back-btn:hover {
+  background: #ffffff;
+  border-color: rgba(255, 255, 255, 0.72);
+  transform: translateY(-1px);
+}
+
+.add-student-back-btn svg {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+}
+
+/* 🎯 LOGO: Absolute positioning to force it into the Right Corner */
+.add-student-web-logo {
+  height: 56px;
+  width: auto;
+  position: static;
+  filter: drop-shadow(0 1px 1px rgba(15, 42, 51, 0.25));
+}
+
+/* Content Layout */
+.add-student-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 50px;
+  padding-top: 22px;
+}
+
+.add-student-card {
+  width: 90%;
+  max-width: 1040px; /* desktop */
+  background: var(--as-surface);
+  border-radius: 18px;
+  padding: 52px 40px;
+  border: 1px solid var(--as-border);
+  box-shadow: var(--as-shadow-md);
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.add-student-form-title {
+  text-align: center;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.add-student-form-title h2 {
+  color: rgba(15, 42, 51, 0.92);
+  font-size: 22px;
+  font-weight: 800;
+  margin: 0;
+}
+
+/* Input Groups */
+.add-student-input-group {
+  margin-bottom: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.add-student-input-group label {
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(15, 42, 51, 0.78);
+  text-transform: uppercase;
+  letter-spacing: 0.2px;
+}
+
+.add-student-web-input {
+  width: 100%;
+  height: 58px;
+  padding: 0 14px;
+  border: 1px solid rgba(15, 90, 102, 0.18);
+  border-radius: 12px;
+  background-color: #ffffff;
+  outline: none;
+  font-size: 14px;
+  color: var(--as-text);
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+  box-sizing: border-box;
+}
+
+.add-student-web-input:focus {
+  border-color: rgba(8, 145, 178, 0.55);
+  box-shadow: 0 0 0 4px rgba(72, 209, 228, 0.14);
+}
+
+/* Dual Row for Semester/CGPA */
+.add-student-dual-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 26px;
+}
+
+/* Gender Row */
+.add-student-gender-row {
+  display: flex;
+  gap: 24px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(15, 90, 102, 0.18);
+  background: rgba(72, 209, 228, 0.10);
+  height: 58px;
+  align-items: center;
+}
+
+.gender-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.gender-label input[type="radio"] {
+  accent-color: var(--as-blue);
+  width: 18px;
+  height: 18px;
+}
+
+/* Password Wrapper */
+.add-student-pass-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.add-student-eye {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: var(--as-muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-student-eye svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Terms */
+.add-student-terms {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0 25px;
+}
+
+.add-student-terms span {
+  font-size: 13px;
+  color: var(--as-muted);
+  font-weight: 500;
+}
+
+/* Submit Button */
+.add-student-submit-btn {
+  width: 100%;
+  height: 58px;
+  background: linear-gradient(135deg, var(--as-cyan) 0%, var(--as-blue) 100%);
+  color: #ffffff;
+  padding: 0 16px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 12px 22px rgba(15, 42, 51, 0.16);
+  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+}
+
+.add-student-submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 28px rgba(15, 42, 51, 0.18);
+  filter: saturate(1.03);
+}
+
+.add-student-submit-btn svg {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+}
+
+.add-student-submit-btn:disabled {
+  background: #cbd5e1;
+  cursor: not-allowed;
+  transform: none;
+}

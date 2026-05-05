@@ -1,0 +1,118 @@
+/* 🔹 SIDEBAR CONTAINER - DARK THEME */
+.student-sidebar {
+    width: 280px;
+    height: 100vh;
+    background-color: #1e293b; /* Professional Dark Slate Blue */
+    display: flex;
+    flex-direction: column;
+    padding: 30px 20px;
+    position: sticky;
+    top: 0;
+    box-shadow: 6px 0 20px rgba(0, 0, 0, 0.15);
+    z-index: 100;
+}
+
+/* 🔹 LOGO AREA */
+.sidebar-header {
+    text-align: center;
+    margin-bottom: 50px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid rgba(72, 209, 228, 0.2); /* Faint Cyan Divider */
+}
+
+.sidebar-logo {
+    height: 65px;
+    width: auto;
+    object-fit: contain;
+    /* Logo agar dark hai to brightness barha di hai */
+    filter: brightness(1.2) contrast(1.1); 
+}
+
+/* 🔹 MENU NAVIGATION */
+.sidebar-menu {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* 🔹 MENU ITEMS (Buttons) */
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 14px 20px;
+    background: transparent;
+    border: none;
+    border-radius: 12px;
+    color: #94a3b8; /* Muted Light Blue-Grey text */
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.menu-item svg {
+    color: #64748b;
+    transition: all 0.3s ease;
+}
+
+/* 🔹 HOVER STATE */
+.menu-item:hover {
+    background-color: rgba(72, 209, 228, 0.1); /* Light Cyan Glow */
+    color: #48D1E4; /* Brand Cyan */
+}
+
+.menu-item:hover svg {
+    color: #48D1E4;
+}
+
+/* 🔹 ACTIVE STATE (Cyan Focus) */
+.menu-item.active {
+    background-color: #48D1E4; /* Solid Cyan */
+    color: #ffffff;
+    font-weight: 800;
+    box-shadow: 0 4px 15px rgba(72, 209, 228, 0.4);
+}
+
+.menu-item.active svg {
+    color: #ffffff;
+}
+
+/* 🔹 LOGOUT BUTTON */
+.logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 14px 20px;
+    margin-top: auto;
+    background-color: rgba(225, 29, 72, 0.1); /* Subtle Red tint */
+    border: 1px solid rgba(225, 29, 72, 0.2);
+    border-radius: 12px;
+    color: #fb7185; /* Light Red */
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: #e11d48;
+    color: #ffffff;
+    border-color: #e11d48;
+}
+
+/* 🔹 RESPONSIVE FIX */
+@media (max-width: 1024px) {
+    .student-sidebar {
+        width: 90px;
+        padding: 30px 15px;
+    }
+    .menu-item span, .logout-btn span {
+        display: none;
+    }
+    .menu-item {
+        justify-content: center;
+    }
+}

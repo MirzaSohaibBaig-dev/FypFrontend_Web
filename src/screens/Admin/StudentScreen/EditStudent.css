@@ -1,0 +1,231 @@
+/* 🔹 ROOT VARIABLES */
+:root {
+  --cyan-primary: #48D1E4; /* theme: cyan */
+  --cyan-blue: #0891b2;    /* theme: blue */
+  --cyan-hover: #0b7f9d;
+  --bg-dashboard: #f5fbfd;
+  --text-main: #0f2a33;
+  --text-muted: rgba(15, 42, 51, 0.68);
+  --card-white: #ffffff;
+  --border-soft: rgba(15, 90, 102, 0.14);
+  --border-strong: rgba(15, 90, 102, 0.22);
+  --shadow-sm: 0 1px 2px rgba(15, 42, 51, 0.06);
+  --shadow-md: 0 10px 24px rgba(15, 42, 51, 0.10);
+  --shadow-lg: 0 20px 35px rgba(15, 42, 51, 0.12);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 🔹 MAIN CONTAINER */
+.edit-container {
+  min-height: 100vh;
+  background: radial-gradient(1200px 600px at 20% -10%, rgba(72, 209, 228, 0.16) 0%, transparent 60%),
+              radial-gradient(900px 520px at 85% 0%, rgba(8, 145, 178, 0.12) 0%, transparent 55%),
+              var(--bg-dashboard);
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 110px 20px 60px; /* Header ke liye top padding */
+}
+
+/* 🔹 FIXED HEADER */
+.edit-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 85px;
+  background: linear-gradient(180deg, var(--cyan-primary) 0%, var(--cyan-blue) 115%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 6px 18px rgba(15, 42, 51, 0.12);
+}
+
+/* 🔹 BACK BUTTON */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  padding: 9px 14px;
+  border-radius: 12px;
+  color: rgba(15, 42, 51, 0.95);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+  font-size: 13px;
+}
+
+.back-btn:hover {
+  background: #ffffff;
+  border-color: rgba(255, 255, 255, 0.72);
+  transform: translateY(-1px);
+}
+
+.back-btn svg {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+}
+
+/* 🔹 LOGO */
+.mini-logo {
+  height: 55px;
+  filter: drop-shadow(0 1px 1px rgba(15, 42, 51, 0.25));
+}
+
+/* 🔹 EDIT CARD (Professional Dashboard Style) */
+.edit-card {
+  background: var(--card-white);
+  width: 100%;
+  max-width: 1040px; /* desktop */
+  padding: 52px 40px;
+  border-radius: 18px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-soft);
+}
+
+/* 🔹 TITLE (Centered & Bold) */
+.form-title {
+  text-align: center;
+  color: var(--text-main);
+  font-size: 26px;
+  font-weight: 800;
+  margin-bottom: 34px;
+  letter-spacing: -0.6px;
+}
+
+/* 🔹 GRID LAYOUT FOR INPUTS */
+.input-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 26px;
+  margin-bottom: 26px;
+}
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.input-field label {
+  font-weight: 700;
+  font-size: 12px;
+  color: rgba(15, 42, 51, 0.78);
+  letter-spacing: 0.2px;
+}
+
+.input-field input {
+  height: 58px;
+  border-radius: 12px;
+  border: 1px solid rgba(15, 90, 102, 0.18);
+  background: #ffffff;
+  padding: 0 14px;
+  font-size: 14px;
+  color: var(--text-main);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+}
+
+.input-field input:focus {
+  border-color: rgba(8, 145, 178, 0.55);
+  box-shadow: 0 0 0 4px rgba(72, 209, 228, 0.14);
+}
+
+/* 🔹 PASSWORD WRAPPER */
+.pass-input {
+  position: relative;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.eye-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* 🔹 GENDER CONTAINER */
+.gender-container {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  background: rgba(72, 209, 228, 0.10);
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(15, 90, 102, 0.18);
+  height: 58px;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  color: var(--text-main);
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.radio-label input[type="radio"] {
+  accent-color: var(--cyan-blue);
+  width: 18px;
+  height: 18px;
+}
+
+/* 🔹 SUBMIT BUTTON (Cyan & Centered) */
+.reg-submit {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  height: 58px;
+  background: linear-gradient(135deg, var(--cyan-primary), var(--cyan-blue));
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  margin: 34px auto 0;
+  cursor: pointer;
+  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+  box-shadow: 0 12px 22px rgba(15, 42, 51, 0.16);
+}
+
+.reg-submit:hover {
+  transform: translateY(-2px);
+  filter: saturate(1.03);
+  box-shadow: 0 16px 28px rgba(15, 42, 51, 0.18);
+}
+
+/* 🔹 RESPONSIVE */
+@media(max-width: 850px) {
+  .edit-header { padding: 0 20px; }
+  .edit-card { padding: 40px 25px; }
+  .input-row { grid-template-columns: 1fr; }
+  .form-title { font-size: 20px; }
+  .reg-submit { max-width: 100%; }
+}

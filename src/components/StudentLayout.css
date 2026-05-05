@@ -1,0 +1,31 @@
+/* ===== MAIN LAYOUT ===== */
+.dashboard-layout {
+  --hs-cyan: #48D1E4;
+  --hs-blue: #0891b2;
+  --hs-bg: #f5fbfd;
+  --hs-surface: #ffffff;
+  --hs-surface-2: #f7fcfe;
+  --hs-border: rgba(15, 90, 102, 0.14);
+  --hs-border-strong: rgba(15, 90, 102, 0.22);
+  --hs-text: #0f2a33;
+  --hs-muted: rgba(15, 42, 51, 0.68);
+  --hs-shadow-sm: 0 1px 2px rgba(15, 42, 51, 0.06);
+  --hs-shadow-md: 0 10px 24px rgba(15, 42, 51, 0.10);
+
+  display: flex;
+  background: radial-gradient(1200px 600px at 20% -10%, rgba(72, 209, 228, 0.16) 0%, transparent 60%),
+              radial-gradient(900px 520px at 85% 0%, rgba(8, 145, 178, 0.12) 0%, transparent 55%),
+              var(--hs-bg) !important;
+  min-height: 100vh;
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif !important;
+  color: var(--hs-text) !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.main-content {
+  flex: 1;
+  padding: 28px 32px 64px !important;
+  max-width: 1360px !important;
+  margin: 0 auto;
+}
