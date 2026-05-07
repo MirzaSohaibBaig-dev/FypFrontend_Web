@@ -1,4 +1,4 @@
-const BASE_URL = 'http://192.168.32.87:5000/api';
+const BASE_URL = 'http://192.168.1.39:5000/api';
 
 // const BASE_URL = 'http://192.168.100.12:5000/api';
 
@@ -282,6 +282,34 @@ export const predictSession = async (sessionid) => {
 
   } catch (error) {
     console.log("❌ PREDICT ERROR:", error);
+    return null;
+  }
+};
+
+
+// 🔥 MID QUESTION BP (During Recording)
+export const midQuestionBP = async () => {
+  try {
+    const response = await fetch(`${BASE_URL}/devices/mid_question_bp`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+
+    const data = await response.json();
+    console.log("📊 MID QUESTION BP:", data);
+
+    if (!response.ok) return null;
+
+    if (data?.status === "mid question BP saved") {
+      return data;
+    }
+
+    return null;
+
+  } catch (error) {
+    console.log("MID BP ERROR:", error);
     return null;
   }
 };

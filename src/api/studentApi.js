@@ -1,6 +1,6 @@
 // api/studentApi.js
 
-const BASE_URL = 'http://192.168.32.87:5000/api';
+const BASE_URL = 'http://192.168.1.39:5000/api';
 // const BASE_URL = 'http://192.168.100.12:5000/api';
 
 // INSERT STUDENT

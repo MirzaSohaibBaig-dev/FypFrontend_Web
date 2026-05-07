@@ -133,7 +133,7 @@ export default function StudentQuestionReport() {
 
       {/* HEADER */}
       <div className="header">
-        <button className="back" onClick={() => navigate(-1)}>
+          <button className="back" onClick={() => navigate(-1)}>
           <ArrowLeft size={16}/> Back
         </button>
 

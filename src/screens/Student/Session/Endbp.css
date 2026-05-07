@@ -259,13 +259,21 @@
 .metric .value {
   font-size: 32px;
   font-weight: 800;
-  color: var(--primary-dark);
+  color: var(--primary-dark) !important;
+  background: transparent !important;
   font-variant-numeric: tabular-nums;
   line-height: 1;
 }
 
-.reading-box.success .metric .value {
+/* .reading-box.success .metric .value {
   color: var(--primary-dark);
+} */
+
+.metric .value {
+  font-size: 32px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
 }
 
 .metric .unit {

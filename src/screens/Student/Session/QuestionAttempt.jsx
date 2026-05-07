@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Clock, Code2, Send, ArrowLeft, BrainCircuit, AlertCircle } from 'lucide-react';
 
 // API Imports (Farhan's Logic)
-import { stopRecording, resetAll } from '../../../api/sessionApi';
+import { stopRecording, resetAll, midQuestionBP } from '../../../api/sessionApi';
 import { deleteSession } from '../../../api/reportApi';
 
 import './QuestionAttempt.css';
@@ -20,34 +20,91 @@ export default function QuestionAttempt() {
     const sid = params.sid || null;
 
     // States
-    const [seconds, setSeconds] = useState((currentQuestion?.duration || 1) * 60);
+    const totalSeconds = (currentQuestion?.duration || 10) * 60; // sohaib changing 10 min to 1 min for testing
+    const [seconds, setSeconds] = useState(totalSeconds);
     const [answer, setAnswer] = useState('');
     const [loading, setLoading] = useState(false);
     const [chatgptEnabled, setChatgptEnabled] = useState(false);
 
+     // Ensure timer resets if the question changes while component is mounted
+    useEffect(() => {
+        setSeconds((currentQuestion?.duration || 10) * 60);
+        setAnswer('');
+        hasNavigated.current = false;
+        midPopupShown.current = false;
+    }, [currentQuestion?.qid]);
+
+
+
+
+    // =====================
+    // MID BP POPUP STATE
+    // =====================
+    const [showMidPopup, setShowMidPopup] = useState(false);
+    const [midBpLoading, setMidBpLoading] = useState(false);
+    const [midBpError, setMidBpError] = useState(false);
+    const midPopupShown = useRef(false);
+
     const hasNavigated = useRef(false);
 
-    // ✅ TIMER LOGIC (100% Farhan)
+    // ✅ TIMER LOGIC
     useEffect(() => {
         if (seconds <= 0) return;
 
         const timer = setInterval(() => {
             setSeconds(prev => {
-                if (prev === 1 && !hasNavigated.current) {
+                const newVal = prev - 1;
+
+                // 1 minute baad popup dikhao - sirf ek baar
+                const midPoint = totalSeconds - 60;
+                if (newVal === midPoint && !midPopupShown.current) {
+                    midPopupShown.current = true;
+                    setShowMidPopup(true);
+                }
+
+                // Timer khatam - next screen
+                if (newVal === 0 && !hasNavigated.current) {
                     hasNavigated.current = true;
                     setTimeout(() => handleNext(), 0);
                 }
-                return prev - 1;
+
+                return newVal;
             });
         }, 1000);
 
         return () => clearInterval(timer);
-    }, [seconds]);
+    }, [seconds, totalSeconds]);
 
     const formatTime = () => {
         const mins = Math.floor(seconds / 60);
         const secs = seconds % 60;
         return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+    };
+
+    // =====================
+    // MID BP OK BUTTON
+    // =====================
+    const handleMidBpOk = async () => {
+        setMidBpLoading(true);
+        setMidBpError(false); // ✅ pehle error clear karo
+
+        try {
+            const result = await midQuestionBP();
+
+            // ✅ SIRF is condition pe popup band hoga
+            if (result?.status === 'mid question BP saved') {
+                setShowMidPopup(false);
+                console.log('✅ Mid BP saved successfully');
+            } else {
+                console.log('⚠️ Unexpected response:', result);
+                setMidBpError(true);
+            }
+        } catch (error) {
+            console.log('❌ Mid BP Error:', error);
+            setMidBpError(true);
+        } finally {
+            setMidBpLoading(false);
+        }
     };
 
     // ✅ SUBMIT / NEXT LOGIC
@@ -95,6 +152,35 @@ export default function QuestionAttempt() {
 
     return (
         <div className="qa-wrapper">
+            {/* ========================
+                MID BP POPUP
+            ======================== */}
+            {showMidPopup && (
+                <div className="mid-modal-overlay">
+                    <div className="mid-modal-box">
+                        <div className="mid-modal-icon">🩺</div>
+                        <h2 className="mid-modal-title">Blood Pressure Check</h2>
+                        <p className="mid-modal-message">
+                            Please turn ON your BP device and press OK when ready.
+                        </p>
+
+                        {midBpError && (
+                            <p className="mid-modal-error">
+                                ⚠️ Device disconnected or failed. Please reconnect and try again.
+                            </p>
+                        )}
+
+                        <button 
+                            className={`mid-modal-btn ${midBpLoading ? 'disabled' : ''}`}
+                            onClick={handleMidBpOk}
+                            disabled={midBpLoading}
+                        >
+                            {midBpLoading ? 'Reading BP...' : (midBpError ? '🔄 Retry' : "OK - I'm Ready")}
+                        </button>
+                    </div>
+                </div>
+            )}
+
             {/* Header Sidebar-less Layout */}
             <header className="qa-header">
                 <div className="header-left">

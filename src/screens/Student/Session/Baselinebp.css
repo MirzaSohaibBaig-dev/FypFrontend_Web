@@ -344,6 +344,7 @@
     color: var(--bp-text-muted);
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    color: rgb(233, 25, 25);
 }
 
 .metric .value {
@@ -354,10 +355,16 @@
     line-height: 1;
 }
 
-.reading-box.success .metric .value {
+/* .reading-box.success .metric .value {
     background: linear-gradient(135deg, var(--bp-cyan), var(--bp-blue));
     --webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+} */
+
+.reading-box.success .metric .value {
+    color: var(--bp-blue);
+    background: none;
+    -webkit-text-fill-color: unset;
 }
 
 .metric .unit {

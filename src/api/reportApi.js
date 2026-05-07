@@ -1,4 +1,4 @@
-const BASE_URL = 'http://192.168.32.87:5000/api';
+const BASE_URL = 'http://192.168.1.39:5000/api';
 // const BASE_URL = 'http://192.168.100.12:5000/api';
 
 // GET QUESTION REPORT
@@ -174,9 +174,9 @@ export const getAllQuestions = async (sid) => {
     let data = await res.json();
     if (data?.count >= 0) questions.push(data);
 
-    res = await fetch(`${BASE_URL}/report/unattemptedmedium/${sid}`);
-    data = await res.json();
-    if (data?.count >= 0) questions.push(data);
+    // res = await fetch(`${BASE_URL}/report/unattemptedmedium/${sid}`);
+    // data = await res.json();
+    // if (data?.count >= 0) questions.push(data);
 
     res = await fetch(`${BASE_URL}/report/unattemptedhard/${sid}`);
     data = await res.json();

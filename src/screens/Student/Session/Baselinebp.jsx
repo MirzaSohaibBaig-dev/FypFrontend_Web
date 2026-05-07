@@ -109,17 +109,17 @@ export default function Baselinebp() {
                         <div className={`reading-box ${bpData ? 'success' : ''}`}>
                             <div className="metric">
                                 <span className="label">Systolic</span>
-                                <span className="value">{bpData ? bpData.SYS : '--'}</span>
+                                <span className="value" style={{ color: '#000000', background: 'transparent', fontWeight: '900', zIndex: 10 }}>{bpData?.SYS || '--'}</span>
                                 <span className="unit">mmHg</span>
                             </div>
                             <div className="metric">
                                 <span className="label">Diastolic</span>
-                                <span className="value">{bpData ? bpData.DIA : '--'}</span>
+                                <span className="value" style={{ color: '#be0000', background: 'black', fontWeight: '900', zIndex: 10 }}>{bpData?.DIA || '--'}</span>
                                 <span className="unit">mmHg</span>
                             </div>
                             <div className="metric">
                                 <span className="label">Pulse</span>
-                                <span className="value">{bpData ? bpData.PULSE : '--'}</span>
+                                <span className="value" style={{ color: '#000000', background: 'transparent', fontWeight: '900', zIndex: 10 }}>{bpData?.PULSE || '--'}</span>
                                 <span className="unit">BPM</span>
                             </div>
                         </div>

@@ -66,6 +66,7 @@ body {
   z-index: 1; /* Place above the blue bar */
   text-align: center;
   padding-top: 20px; /* Push logo down from the top edge slightly */
+   pointer-events: none;
 }
 
 .header-title img {
