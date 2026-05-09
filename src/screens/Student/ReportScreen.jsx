@@ -113,9 +113,9 @@ const ReportScreen = () => {
                       <strong>{item.stressLevel ?? 'Unknown'}</strong>
                     </span>
 
-                    <button className="view-details-link">
+                    {/* <button className="view-details-link">
                       Details <ArrowRight size={14} />
-                    </button>
+                    </button> */}
                   </div>
 
                 </div>

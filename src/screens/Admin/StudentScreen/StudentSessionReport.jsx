@@ -107,18 +107,16 @@ const StudentSessionReport = () => {
 
   return (
     <div className="page">
-
       {/* NAV */}
       <div className="nav">
         <button onClick={() => navigate(-1)}>
-          <ArrowLeft size={16}/> Back
+          <ArrowLeft size={16} /> Back
         </button>
-        <h2>{report?.student_name || 'Student'}'s Report</h2>
-        <span>{report?.date || ''}</span>
+        <h2>{report?.student_name || "Student"}'s Report</h2>
+        <span>{report?.date || ""}</span>
       </div>
 
       <div className="container">
-
         {/* SUMMARY */}
         <div className="card">
           <h3>Overall Session Report</h3>
@@ -142,25 +140,41 @@ const StudentSessionReport = () => {
             <div>
               <p>Final Stress</p>
               <h4 className="stress">
-                {report?.final_stress_level === 2 ? 'High' :
-                 report?.final_stress_level === 1 ? 'Medium' : 'Low'}
+                {report?.final_stress_level === 2
+                  ? "High"
+                  : report?.final_stress_level === 1
+                    ? "Medium"
+                    : "Low"}
               </h4>
             </div>
           </div>
 
+          {/* BP + HRV row */}
           <div className="two-col">
             <div>
               <h4>Blood Pressure</h4>
-              <p>Start: {report?.average_bpb}</p>
-              <p>End: {report?.average_bpa}</p>
+              <p>
+                Start (Before) <span>{report?.average_bpb ?? "—"}</span>
+              </p>
+              <p>
+                End (After) <span>{report?.average_bpa ?? "—"}</span>
+              </p>
             </div>
 
             <div>
               <h4>Heart Rate Variability</h4>
-              <p>HR: {Math.round(report?.HR || 0)} bpm</p>
-              <p>RMSSD: {Math.round(report?.RMSSD || 0)} ms</p>
-              <p>SDNN: {Math.round(report?.SDNN || 0)} ms</p>
-              <p>pNN50: {Math.round(report?.pNN50 || 0)} %</p>
+              <p>
+                Heart Rate <span>{Math.round(report?.HR || 0)} bpm</span>
+              </p>
+              <p>
+                RMSSD <span>{Math.round(report?.RMSSD || 0)} ms</span>
+              </p>
+              <p>
+                SDNN <span>{Math.round(report?.SDNN || 0)} ms</span>
+              </p>
+              <p>
+                pNN50 <span>{Math.round(report?.pNN50 || 0)} %</span>
+              </p>
             </div>
           </div>
 
@@ -176,16 +190,46 @@ const StudentSessionReport = () => {
           <div className="chart-wrapper">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={chartData}>
-                <CartesianGrid strokeDasharray="3 3"/>
+                <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="time" />
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Line type="monotone" dataKey="Alpha" stroke="#00bcd4" strokeWidth={3} dot={false}/>
-                <Line type="monotone" dataKey="Beta" stroke="#ff4d4d" strokeWidth={3} dot={false}/>
-                <Line type="monotone" dataKey="Theta" stroke="#ffc107" strokeWidth={3} dot={false}/>
-                <Line type="monotone" dataKey="Gamma" stroke="#4caf50" strokeWidth={3} dot={false}/>
-                <Line type="monotone" dataKey="Delta" stroke="#9c27b0" strokeWidth={3} dot={false}/>
+                <Line
+                  type="monotone"
+                  dataKey="Alpha"
+                  stroke="#00bcd4"
+                  strokeWidth={3}
+                  dot={false}
+                />
+                <Line
+                  type="monotone"
+                  dataKey="Beta"
+                  stroke="#ff4d4d"
+                  strokeWidth={3}
+                  dot={false}
+                />
+                <Line
+                  type="monotone"
+                  dataKey="Theta"
+                  stroke="#ffc107"
+                  strokeWidth={3}
+                  dot={false}
+                />
+                <Line
+                  type="monotone"
+                  dataKey="Gamma"
+                  stroke="#4caf50"
+                  strokeWidth={3}
+                  dot={false}
+                />
+                <Line
+                  type="monotone"
+                  dataKey="Delta"
+                  stroke="#9c27b0"
+                  strokeWidth={3}
+                  dot={false}
+                />
               </LineChart>
             </ResponsiveContainer>
           </div>
@@ -198,16 +242,39 @@ const StudentSessionReport = () => {
           <div className="chart-wrapper">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={chartData}>
-                <CartesianGrid strokeDasharray="3 3"/>
+                <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="time" />
-                <YAxis domain={['auto', 'auto']} />
+                <YAxis domain={["auto", "auto"]} />
                 <Tooltip />
                 <Legend />
-                <Line type="monotone" dataKey="HR" stroke="#ff0000" strokeWidth={3} dot={false}/>
-                <Line type="monotone" dataKey="SDNN" stroke="#00bcd4" strokeWidth={3} dot={false}/>
-                <Line type="monotone" dataKey="RMSSD" stroke="#4caf50" strokeWidth={3} dot={false}/>
-                <Line type="monotone" dataKey="pNN50" stroke="#9c27b0" strokeWidth={3} dot={false}/>
-               
+                <Line
+                  type="monotone"
+                  dataKey="HR"
+                  stroke="#ff0000"
+                  strokeWidth={3}
+                  dot={false}
+                />
+                <Line
+                  type="monotone"
+                  dataKey="SDNN"
+                  stroke="#00bcd4"
+                  strokeWidth={3}
+                  dot={false}
+                />
+                <Line
+                  type="monotone"
+                  dataKey="RMSSD"
+                  stroke="#4caf50"
+                  strokeWidth={3}
+                  dot={false}
+                />
+                <Line
+                  type="monotone"
+                  dataKey="pNN50"
+                  stroke="#9c27b0"
+                  strokeWidth={3}
+                  dot={false}
+                />
               </LineChart>
             </ResponsiveContainer>
           </div>
@@ -215,13 +282,14 @@ const StudentSessionReport = () => {
 
         {/* BOTTOM */}
         <div className="bottom">
-
           <div className="card">
             <h3>User Feedback</h3>
             <p>Mental Load: {selfReport?.mentalLoad}</p>
             <p>Frustration: {selfReport?.frustration}</p>
             <p>Effort: {selfReport?.effort}</p>
-            <p><b>Comment:</b> {selfReport?.comment}</p>
+            <p>
+              <b>Comment:</b> {selfReport?.comment}
+            </p>
           </div>
 
           <div className="card">
@@ -234,19 +302,19 @@ const StudentSessionReport = () => {
                 <button
                   onClick={() => {
                     if (!sessionId || !studentId || !q.qid) {
-                      alert('Missing navigation data!');
+                      alert("Missing navigation data!");
                       return;
                     }
 
                     // ✅ Navigate with BOTH state + params (robust)
-navigate('/admin/student-question-report', {
-  state: {
-    sid: studentId,
-    studentId: studentId,
-    sessionId: sessionId,
-    qid: q.qid
-  }
-});
+                    navigate("/admin/student-question-report", {
+                      state: {
+                        sid: studentId,
+                        studentId: studentId,
+                        sessionId: sessionId,
+                        qid: q.qid,
+                      },
+                    });
                   }}
                 >
                   Report
@@ -254,9 +322,7 @@ navigate('/admin/student-question-report', {
               </div>
             ))}
           </div>
-
         </div>
-
       </div>
     </div>
   );

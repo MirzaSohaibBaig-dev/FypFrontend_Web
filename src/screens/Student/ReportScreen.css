@@ -190,7 +190,7 @@
 /* ===== FOOTER ===== */
 .report-item-footer {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
   border-top: 1px solid var(--border);
   padding-top: 24px;
@@ -207,7 +207,7 @@
   border: 1px solid var(--border);
 }
 
-.view-details-link {
+/* .view-details-link {
   background: var(--primary);
   color: white;
   padding: 12px 20px;
@@ -220,7 +220,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-}
+} */
 
 .view-details-link:hover {
   background: var(--primary-dark);
