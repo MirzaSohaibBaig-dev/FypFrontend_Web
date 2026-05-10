@@ -9,8 +9,8 @@ const LoginScreen = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState(''); //input save krny k liye state
+  const [password, setPassword] = useState(''); //input save krny k liye state
   const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -61,7 +61,7 @@ const LoginScreen = () => {
         navigate('/admin');
       } else if (role === 'student') {
         // ⚠️ DO NOT CHANGE THIS
-        navigate('/student/home', { state: { sid: data.sId } });
+        navigate('/student/home', { state: { sid: data.sId } }); //home screen show which student will be displayed
       } else {
         alert("Unknown user role received from server");
       }

@@ -14,14 +14,14 @@ import {
 
 import './StudentSessionReport.css';
 
-const StudentSessionReport = () => {
+const StudentSessionReport = () => { //reactcomponent jo student session report dikhayega admin ko, isme charts bhi honge jo eeg aur ppg data show karenge, aur ek summary section hoga jisme session ka overall stress level aur other metrics honge. Har question ke liye bhi ek button hoga jisse admin us question ka detailed report dekh sakta hai.
   const navigate = useNavigate();
-  const location = useLocation();
+  const location = useLocation(); 
   const params = useParams();
 
   // ✅ Prefer state, fallback to URL params
   const sessionId =
-    location.state?.sessionId ||
+    location.state?.sessionId ||     // A || B
     params.sessionId ||
     location.state?.sid || null;
 
@@ -36,7 +36,7 @@ const StudentSessionReport = () => {
 
   const [report, setReport] = useState(null);
   const [eeg, setEeg] = useState(null);
-  const [ppg, setPpg] = useState(null);
+  const [ppg, setPpg] = useState(null); 
   const [selfReport, setSelfReport] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -53,7 +53,7 @@ const StudentSessionReport = () => {
   const fetchData = async () => {
     try {
       const res = await getStudentSessionReport(studentId, sessionId);
-      setReport(res);
+      setReport(res); //await backend response ka wait
 
       const [self, eegData, ppgData] = await Promise.all([
         getSelfReport(sessionId),
@@ -73,7 +73,7 @@ const StudentSessionReport = () => {
 
   // ✅ Sync EEG + PPG lengths to avoid broken graph
   const chartData = [];
-  const minLength = Math.min(
+  const minLength = Math.min( //Array
     eeg?.time?.length || 0,
     ppg?.HR?.length || 0
   );
@@ -109,7 +109,7 @@ const StudentSessionReport = () => {
     <div className="page">
       {/* NAV */}
       <div className="nav">
-        <button onClick={() => navigate(-1)}>
+        <button onClick={() => navigate(-1)}> 
           <ArrowLeft size={16} /> Back
         </button>
         <h2>{report?.student_name || "Student"}'s Report</h2>

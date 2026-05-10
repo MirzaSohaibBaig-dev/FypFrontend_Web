@@ -1,8 +1,8 @@
-const BASE_URL = 'http://192.168.1.20:5000/api';
+const BASE_URL = 'http://192.168.1.12:5000/api';
 
 export const loginUser = async (username, password) => {
   try {
-    const response = await fetch(`${BASE_URL}/admin`, { // Farhan se confirm karein kya endpoint yahi hai?
+    const response = await fetch(`${BASE_URL}/admin`, { 
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
