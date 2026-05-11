@@ -47,7 +47,7 @@ const HomeScreen = () => {
   return (
     <>
         <header className="content-header">
-            <h1>Welcome! {student?.name || 'Loading...'}!</h1>
+            <h1>Welcome, {student?.name || 'Loading...'}!</h1>
             <p className="semester-tag">Semester {student?.semester || '--'}</p>
         </header>
 

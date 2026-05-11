@@ -109,8 +109,21 @@ const ReportScreen = () => {
 
                   <div className="report-item-footer">
                     <span>
-                      Overall Stress Level:
-                      <strong>{item.stressLevel ?? 'Unknown'}</strong>
+                      {/* Overall Stress Level:
+                      <strong>{item.stressLevel ?? 'Unknown'}</strong> */}
+
+                       Overall Stress Level:{' '}
+                      <strong>
+                        {/* {item.stressLevel === 0 ? 'Low' : 
+                         item.stressLevel === 1 ? 'Medium' : 
+                         item.stressLevel === 2 ? 'High' : 
+                         item.stressLevel ?? 'Unknown'} */}
+
+                         {item.stressLevel != null && Number(item.stressLevel) === 0 ? 'Low' : 
+                         item.stressLevel != null && Number(item.stressLevel) === 1 ? 'Medium' : 
+                         item.stressLevel != null && Number(item.stressLevel) === 2 ? 'High' : 
+                         item.stressLevel ?? 'Unknown'}
+                      </strong>
                     </span>
 
                     {/* <button className="view-details-link">

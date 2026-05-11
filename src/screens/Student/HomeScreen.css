@@ -6,7 +6,7 @@
 }
 
 .content-header h1 {
-  font-size: 32px;
+  font-size: px;
   font-weight: 800;
   color: var(--hs-text);
   margin: 0 0 6px;
@@ -16,7 +16,7 @@
 .semester-tag {
   color: var(--hs-blue);
   font-weight: 600;
-  font-size: 14px;
+  font-size: 20px;
 }
 
 /* ===== MAIN CARD ===== */
