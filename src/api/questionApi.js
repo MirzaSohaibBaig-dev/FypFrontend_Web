@@ -1,5 +1,5 @@
 // api/Question api
-const BASE_URL = 'http://192.168.1.13:5000/api';
+const BASE_URL = 'http://192.168.18.34:5000/api';
 
 // const BASE_URL = 'http://192.168.100.12:5000/api';
 

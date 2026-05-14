@@ -1,4 +1,4 @@
-const BASE_URL = 'http://192.168.1.13:5000/api';
+const BASE_URL = 'http://192.168.18.34:5000/api';
 // const BASE_URL = 'http://192.168.100.12:5000/api';
 
 // GET QUESTION REPORT
@@ -254,5 +254,88 @@ export const getPPGSingle = async (sid, sessionId, qid) => {
   } catch (err) {
     console.log("PPG SINGLE ERROR:", err);
     return null;
+  }
+};
+// 👉 Combined Question Report
+export const getCombinedQuestionReport = async (sid, sessionId) => {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/devices/eeg/combined-question-report?sessionid=${sessionId}&sid=${sid}`
+    );
+    const data = await response.json();
+    if (!response.ok) {
+      console.log("COMBINED REPORT ERROR:", data);
+      return null;
+    }
+    console.log("COMBINED QUESTION REPORT:", data);
+    return data;
+  } catch (error) {
+    console.log("COMBINED QUESTION REPORT ERROR:", error);
+    return null;
+  }
+};
+// ======================================================
+// 👉 FILTER QUESTION REPORTS API (React JS Web Version)
+// ======================================================
+
+export const getFilteredQuestionReports = async (
+  qid,
+  gender,
+  cgpa,
+  semester,
+  gptindex
+) => {
+  try {
+    // URL banany ka tareeka (Template literals use karein)
+    let url = `${BASE_URL}/report/filter_question_reports/${qid}?`;
+
+    // ================= GENDER =================
+    if (gender && gender !== 'ALL') {
+      url += `gender=${gender}&`;
+    }
+
+    // ================= CGPA =================
+    if (cgpa) {
+      url += `min_cgpa=${cgpa}&`;
+    }
+
+    // ================= SEMESTER =================
+    if (semester && semester !== 'ALL') {
+      url += `semester=${semester}&`;
+    }
+
+    // ================= GPT INDEX =================
+    if (gptindex !== '' && gptindex !== undefined && gptindex !== null) {
+      url += `gptindex=${gptindex}&`;
+    }
+
+    // Last mein check karein agar '&' ya '?' extra hai toh trim kr dein (optional but good practice)
+    if (url.endsWith('&') || url.endsWith('?')) {
+        url = url.slice(0, -1);
+    }
+
+    console.log("🚀 Calling Filter API:", url);
+
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        // Agar aapke pass token hai toh yahan dalie:
+        // 'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      console.error("❌ FILTER QUESTION API ERROR:", data);
+      return [];
+    }
+
+    return data;
+
+  } catch (error) {
+    console.error("❌ FILTER QUESTION API EXCEPTION:", error);
+    return [];
   }
 };

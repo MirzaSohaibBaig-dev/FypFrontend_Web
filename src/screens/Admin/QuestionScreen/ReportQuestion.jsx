@@ -1,174 +1,8 @@
-// import React, { useEffect, useState } from 'react';
-// import { useNavigate, useLocation } from 'react-router-dom';
-// import { ArrowLeft, Loader2, Activity, Brain, Heart, Zap } from 'lucide-react';
-// import { getQuestionReport } from '../../../api/reportApi'; // Farhan's exact API
-// import logoImage from '../../../assets/logo.png';
-// import './ReportQuestion.css';
-
-// const ReportQuestion = () => {
-//   const navigate = useNavigate();
-//   const location = useLocation();
-  
-//   // Farhan's logic: navigation state se question object aur qid nikalna
-//   const { question } = location.state || {};
-//   const qid = question?.qid;
-
-//   const stressMap = { 0: "Low", 1: "Medium", 2: "High" };
-
-//   const [report, setReport] = useState(null);
-//   const [loading, setLoading] = useState(true);
-
-//   // Fetch report on component mount
-//   useEffect(() => {
-//     const fetchReportData = async () => {
-//       if (!qid) {
-//         setLoading(false);
-//         return;
-//       }
-//       try {
-//         const data = await getQuestionReport(qid);
-//         setReport(data);
-//       } catch (error) {
-//         console.error('Error fetching report:', error);
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-
-//     fetchReportData();
-//   }, [qid]);
-
-//   if (loading) {
-//     return (
-//       <div className="report-screen-container loading-state">
-//         <Loader2 className="animate-spin" color="white" size={50} />
-//         <p>Loading Report Data...</p>
-//       </div>
-//     );
-//   }
-
-//   return (
-//     <div className="report-screen-container">
-//       {/* Fixed Header with Top-Right Logo */}
-//       <header className="report-header">
-//         <button className="report-back-btn" onClick={() => navigate(-1)}>
-//           <ArrowLeft size={18} /> Back
-//         </button>
-//         <img src={logoImage} alt="CodeMide" className="report-web-logo" />
-//       </header>
-
-//       <main className="report-content">
-//         <h2 className="report-title">Question Report</h2>
-        
-//         <div className="report-summary-text">
-//           <p>Total Student Attempts - {report?.total_attempts ?? 'No data'}</p>
-//           <p>{report?.duration ? `${report.duration}:00 minutes` : 'No data'}</p>
-//         </div>
-
-//         <div className="report-grid-layout">
-//           {/* Question Statement Section */}
-//           <div className="report-white-card full-width">
-//             <h3 className="card-heading"><Brain size={18} /> Question Statement</h3>
-//             <p className="card-body-text">{report?.description ?? 'No description'}</p>
-//           </div>
-
-//           <div className="comparison-flex">
-//             {/* WITH GPT SECTION */}
-//             <div className="report-white-card highlight-cyan">
-//               <h3 className="section-title">Overall Average Stress with ChatGPT</h3>
-//               <p className="attempt-count">Student Attempts - {report?.with_gpt?.total_attempts ?? 'No data'}</p>
-              
-//               <div className="stress-result">
-//                 Final Stress Level: <strong>{stressMap[report?.with_gpt?.most_common_stress_level ?? '0'] ?? 'No data'}</strong>
-//               </div>
-
-//               <div className="stats-grid">
-//                 <div className="stat-box">
-//                   <Heart size={14} />
-//                   <div className="stat-text">
-//                     <div className="stat-label">BP</div>
-//                     <div className="stat-value">{report?.with_gpt?.avg_bp || 'No data'}</div>
-//                   </div>
-//                 </div>
-//                 <div className="stat-box">
-//                   <Activity size={14} />
-//                   <div className="stat-text">
-//                     <div className="stat-label">HR</div>
-//                     <div className="stat-value">{report?.with_gpt?.avg_hr ?? 'No data'} BPM</div>
-//                   </div>
-//                 </div>
-//                 <div className="stat-box">
-//                   <Zap size={14} />
-//                   <div className="stat-text">
-//                     <div className="stat-label">SDNN</div>
-//                     <div className="stat-value">{report?.with_gpt?.avg_sdnn ?? 'No data'} ms</div>
-//                   </div>
-//                 </div>
-//                 <div className="stat-box">
-//                   <Zap size={14} />
-//                   <div className="stat-text">
-//                     <div className="stat-label">RMSSD</div>
-//                     <div className="stat-value">{report?.with_gpt?.avg_rmssd ?? 'No data'} ms</div>
-//                   </div>
-//                 </div>
-//               </div>
-//             </div>
-
-//             {/* WITHOUT GPT SECTION */}
-//             <div className="report-white-card highlight-dark">
-//               <h3 className="section-title">Overall Average Stress without ChatGPT</h3>
-//               <p className="attempt-count">Student Attempts - {report?.without_gpt?.total_attempts ?? 'No data'}</p>
-              
-//               <div className="stress-result">
-//                 Final Stress Level: <strong>{stressMap[report?.without_gpt?.most_common_stress_level ?? '0'] ?? 'No data'}</strong>
-//               </div>
-
-//               <div className="stats-grid">
-//                 <div className="stat-box">
-//                   <Heart size={14} />
-//                   <div className="stat-text">
-//                     <div className="stat-label">BP</div>
-//                     <div className="stat-value">{report?.without_gpt?.avg_bp || 'No data'}</div>
-//                   </div>
-//                 </div>
-//                 <div className="stat-box">
-//                   <Activity size={14} />
-//                   <div className="stat-text">
-//                     <div className="stat-label">HR</div>
-//                     <div className="stat-value">{report?.without_gpt?.avg_hr ?? 'No data'} BPM</div>
-//                   </div>
-//                 </div>
-//                 <div className="stat-box">
-//                   <Zap size={14} />
-//                   <div className="stat-text">
-//                     <div className="stat-label">SDNN</div>
-//                     <div className="stat-value">{report?.without_gpt?.avg_sdnn ?? 'No data'} ms</div>
-//                   </div>
-//                 </div>
-//                 <div className="stat-box">
-//                   <Zap size={14} />
-//                   <div className="stat-text">
-//                     <div className="stat-label">RMSSD</div>
-//                     <div className="stat-value">{report?.without_gpt?.avg_rmssd ?? 'No data'} ms</div>
-//                   </div>
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-//       </main>
-//     </div>
-//   );
-// };
-
-// export default ReportQuestion;
-
-
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { ArrowLeft, Loader2, Activity, Brain, Heart, Zap } from 'lucide-react';
-import { getQuestionReport } from '../../../api/reportApi';
-import logoImage from '../../../assets/logo.png';
+import { ArrowLeft, Loader2, User } from 'lucide-react';
+import { getQuestionReport, getFilteredQuestionReports } from '../../../api/reportApi';
+import logo from '../../../assets/logo.png';
 import './ReportQuestion.css';
 
 const ReportQuestion = () => {
@@ -178,13 +12,24 @@ const ReportQuestion = () => {
   const { question } = location.state || {};
   const qid = question?.qid;
 
-  const stressMap = { 0: 'Low', 1: 'Medium', 2: 'High' };
+  const stressMap = {
+    0: 'Low',
+    1: 'Medium',
+    2: 'High',
+  };
 
   const [report, setReport] = useState(null);
+  const [filteredReports, setFilteredReports] = useState([]);
+  const [gender, setGender] = useState('');
+  const [cgpa, setCgpa] = useState('');
+  const [semester, setSemester] = useState('');
+  const [gptindex, setGptindex] = useState('');
+  
   const [loading, setLoading] = useState(true);
+  const [filterLoading, setFilterLoading] = useState(false);
 
   useEffect(() => {
-    const fetchReportData = async () => {
+    const fetchReport = async () => {
       if (!qid) { setLoading(false); return; }
       try {
         const data = await getQuestionReport(qid);
@@ -195,141 +40,286 @@ const ReportQuestion = () => {
         setLoading(false);
       }
     };
-    fetchReportData();
+    fetchReport();
   }, [qid]);
 
-  /* ── LOADING ── */
+  const applyFilters = async () => {
+    if (!qid) return;
+    try {
+      setFilterLoading(true);
+      const data = await getFilteredQuestionReports(
+        qid,
+        gender || '',
+        cgpa || '',
+        semester || '',
+        gptindex || ''
+      );
+      setFilteredReports(Array.isArray(data) ? data : []);
+    } catch (error) {
+      console.error('FILTER ERROR:', error);
+      setFilteredReports([]);
+    } finally {
+      setFilterLoading(false);
+    }
+  };
+
+  const statistics = useMemo(() => {
+    if (filteredReports.length === 0) {
+      return { withGpt: null, withoutGpt: null };
+    }
+
+    const withGptReports = filteredReports.filter(r => Number(r.gptindex) === 1);
+    const withoutGptReports = filteredReports.filter(r => Number(r.gptindex) === 0);
+
+    const calculateAvg = (reports, field) => {
+      if (reports.length === 0) return '0';
+
+      if (field === 'bp') {
+        let sys = 0;
+        let dia = 0;
+        let count = 0;
+
+        reports.forEach(r => {
+          if (r.bp && String(r.bp).includes('/')) {
+            const parts = String(r.bp).split('/');
+            sys += Number(parts[0]) || 0;
+            dia += Number(parts[1]) || 0;
+            count++;
+          }
+        });
+        if (count === 0) return 'N/A';
+        return `${(sys / count).toFixed(0)}/${(dia / count).toFixed(0)}`;
+      }
+
+      const sum = reports.reduce((acc, r) => {
+        return acc + (parseFloat(r[field]) || 0);
+      }, 0);
+      return (sum / reports.length).toFixed(2);
+    };
+
+    const calculateStressLevel = reports => {
+      if (reports.length === 0) return null;
+      const stressLevels = {};
+      reports.forEach(r => {
+        const level = String(r.stressLevel || r.stresslevel);
+        stressLevels[level] = (stressLevels[level] || 0) + 1;
+      });
+      const mostCommon = Object.keys(stressLevels).reduce((a, b) =>
+        stressLevels[a] > stressLevels[b] ? a : b
+      );
+      return stressMap[mostCommon] || 'Unknown';
+    };
+
+    return {
+      withGpt: withGptReports.length > 0 ? {
+        totalAttempts: withGptReports.length,
+        avgHeartRate: calculateAvg(withGptReports, 'heartRate'),
+        avgBP: calculateAvg(withGptReports, 'bp'),
+        stressLevel: calculateStressLevel(withGptReports),
+      } : null,
+      withoutGpt: withoutGptReports.length > 0 ? {
+        totalAttempts: withoutGptReports.length,
+        avgHeartRate: calculateAvg(withoutGptReports, 'heartRate'),
+        avgBP: calculateAvg(withoutGptReports, 'bp'),
+        stressLevel: calculateStressLevel(withoutGptReports),
+      } : null,
+    };
+  }, [filteredReports]);
+
   if (loading) {
     return (
-      <div className="rq-page loading-state">
+      <div className="loader">
         <Loader2 className="animate-spin" color="white" size={44} />
-        <p>Loading Report Data...</p>
+        <p>Loading Question Report...</p>
       </div>
     );
   }
 
-  /* ── STRESS BADGE colour helper ── */
-  const stressLevel = (val) => {
-    const map = { Low: 'stress-low', Medium: 'stress-med', High: 'stress-high' };
-    return map[val] || '';
-  };
-
-  const withStress  = stressMap[report?.with_gpt?.most_common_stress_level] ?? 'No data';
-  const withoutStress = stressMap[report?.without_gpt?.most_common_stress_level] ?? 'No data';
-
   return (
-    <div className="rq-page">
-
-      {/* ── HEADER ── */}
-      <header className="rq-header">
-        <button className="rq-back-btn" onClick={() => navigate(-1)}>
-          <ArrowLeft size={15} />
-          Back
+    <div className="page">
+      {/* NAV */}
+      <div className="nav">
+        <button onClick={() => navigate(-1)}>
+          <ArrowLeft size={16} /> Back
         </button>
-        <img src={logoImage} alt="CodeMide" className="rq-logo" />
-      </header>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <img src={logo} alt="logo" style={{ height: '35px', filter: 'brightness(0) invert(1)' }} />
+            <h2>Question Report</h2>
+        </div>
+        <span>{report?.total_attempts ?? '0'} Attempts / {report?.duration ?? '0'}:00 min</span>
+      </div>
 
-      {/* ── MAIN ── */}
-      <main className="rq-main">
+      <div className="container">
 
-        {/* Page title */}
-        <div className="rq-page-head">
-          <h1 className="rq-title">Question Report</h1>
-          <div className="rq-meta-row">
-            <span className="rq-meta-pill">
-              Total Attempts&nbsp;&nbsp;<strong>{report?.total_attempts ?? '—'}</strong>
-            </span>
-            <span className="rq-meta-pill">
-              Duration&nbsp;&nbsp;<strong>{report?.duration ? `${report.duration}:00 min` : '—'}</strong>
-            </span>
-          </div>
+        {/* QUESTION CARD */}
+        <div className="card" style={{ borderTop: '3px solid var(--ssr-cyan)' }}>
+          <h3 style={{ marginBottom: '10px' }}>Question Description</h3>
+          <p style={{ fontSize: '15px', color: 'var(--ssr-text-2)', borderBottom: 'none', margin: 0, paddingBottom: 0 }}>
+            {report?.description ?? 'No description available.'}
+          </p>
         </div>
 
-        <div className="rq-grid">
-
-          {/* Question Statement */}
-          <div className="rq-card rq-card--statement">
-            <div className="rq-card-label">
-              <Brain size={16} />
-              Question Statement
-            </div>
-            <p className="rq-card-body">{report?.description ?? 'No description available.'}</p>
+        {/* FILTERS */}
+        <div className="card">
+          <h3>Apply Filters</h3>
+          <div className="filter-grid">
+            <select value={gender} onChange={e => setGender(e.target.value)} className="band-select">
+              <option value="">Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+            <select value={cgpa} onChange={e => setCgpa(e.target.value)} className="band-select">
+              <option value="">Select CGPA</option>
+              <option value="2.0">2.0+</option>
+              <option value="2.5">2.5+</option>
+              <option value="3.0">3.0+</option>
+              <option value="3.5">3.5+</option>
+            </select>
+            <select value={semester} onChange={e => setSemester(e.target.value)} className="band-select">
+              <option value="">Select Semester</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+            </select>
+            <select value={gptindex} onChange={e => setGptindex(e.target.value)} className="band-select">
+              <option value="">GPT Filter</option>
+              <option value="1">With ChatGPT</option>
+              <option value="0">Without ChatGPT</option>
+            </select>
           </div>
-
-          {/* Comparison row */}
-          <div className="rq-compare-row">
-
-            {/* WITH GPT */}
-            <div className="rq-card rq-card--with">
-              <div className="rq-card-tag rq-card-tag--cyan">With ChatGPT</div>
-              <h3 className="rq-card-title">Overall Average Stress</h3>
-
-              <div className="rq-attempts-badge">
-                {report?.with_gpt?.total_attempts ?? 0} Student Attempts
-              </div>
-
-              <div className={`rq-stress-box ${stressLevel(withStress)}`}>
-                <span className="rq-stress-dot" />
-                Final Stress Level: <strong>{withStress}</strong>
-              </div>
-
-              <div className="rq-stats">
-                <StatBox icon={<Heart size={13} />} label="BP"    value={report?.with_gpt?.avg_bp    || '—'} />
-                <StatBox icon={<Activity size={13} />} label="HR" value={report?.with_gpt?.avg_hr != null ? `${report.with_gpt.avg_hr} BPM` : '—'} />
-                <StatBox icon={<Zap size={13} />}  label="SDNN"   value={report?.with_gpt?.avg_sdnn  != null ? `${report.with_gpt.avg_sdnn} ms`  : '—'} />
-                <StatBox icon={<Zap size={13} />}  label="RMSSD"  value={report?.with_gpt?.avg_rmssd != null ? `${report.with_gpt.avg_rmssd} ms` : '—'} />
-              </div>
-            </div>
-
-            {/* WITHOUT GPT */}
-            <div className="rq-card rq-card--without">
-              <div className="rq-card-tag rq-card-tag--blue">Without ChatGPT</div>
-              <h3 className="rq-card-title">Overall Average Stress</h3>
-
-              <div className="rq-attempts-badge">
-                {report?.without_gpt?.total_attempts ?? 0} Student Attempts
-              </div>
-
-              <div className={`rq-stress-box ${stressLevel(withoutStress)}`}>
-                <span className="rq-stress-dot" />
-                Final Stress Level: <strong>{withoutStress}</strong>
-              </div>
-
-              <div className="rq-stats">
-                <StatBox icon={<Heart size={13} />}   label="BP"    value={report?.without_gpt?.avg_bp    || '—'} />
-                <StatBox icon={<Activity size={13} />} label="HR"   value={report?.without_gpt?.avg_hr    != null ? `${report.without_gpt.avg_hr} BPM`   : '—'} />
-                <StatBox icon={<Zap size={13} />}      label="SDNN"  value={report?.without_gpt?.avg_sdnn  != null ? `${report.without_gpt.avg_sdnn} ms`   : '—'} />
-                <StatBox icon={<Zap size={13} />}      label="RMSSD" value={report?.without_gpt?.avg_rmssd != null ? `${report.without_gpt.avg_rmssd} ms`  : '—'} />
-              </div>
-            </div>
-
-          </div>
+          
+          <button className="apply-btn" onClick={applyFilters} disabled={filterLoading}>
+            {filterLoading ? <Loader2 className="animate-spin" size={18} /> : null}
+            {filterLoading ? 'Applying...' : 'Apply Filters'}
+          </button>
         </div>
-      </main>
-    </div>
-  );
-};
 
-/* ── tiny reusable stat tile ── */
-const StatBox = ({ icon, label, value }) => {
-  const metricClass = {
-    'BP':    'rq-stat--bp',
-    'HR':    'rq-stat--hr',
-    'SDNN':  'rq-stat--sdnn',
-    'RMSSD': 'rq-stat--rmssd',
-  }[label] || '';
+        {/* RESULTS */}
+        {filteredReports.length > 0 ? (
+          <>
+            {/* WITH GPT CARD */}
+            {statistics.withGpt && (
+              <div className="card summary-section">
+                <h3>Overall Average Stress with ChatGPT</h3>
+                
+                <div className="summary-grid">
+                  <div>
+                    <p>Student Attempts</p>
+                    <h4>{statistics.withGpt.totalAttempts}</h4>
+                  </div>
+                  <div>
+                    <p>Final Stress Level</p>
+                    <h4 className="stress">{statistics.withGpt.stressLevel}</h4>
+                  </div>
+                </div>
 
-  return (
-    <div className={`rq-stat ${metricClass}`}>
-      <div className="rq-stat-icon">{icon}</div>
-      <div className="rq-stat-body">
-        <span className="rq-stat-label">{label}</span>
-        <span className="rq-stat-value">{value}</span>
+                <div className="two-col">
+                  <div>
+                    <h4>Blood Pressure</h4>
+                    <p>Average BP <span>{statistics.withGpt.avgBP}</span></p>
+                  </div>
+                  <div>
+                    <h4>Heart Rate Variability</h4>
+                    <p>Average HR <span>{statistics.withGpt.avgHeartRate} bpm</span></p>
+                    <p>Average SDNN <span>-</span></p>
+                    <p>Average RMSSD <span>-</span></p>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* WITHOUT GPT CARD */}
+            {statistics.withoutGpt && (
+              <div className="card summary-section" style={{ borderTop: '3px solid var(--ssr-blue)' }}>
+                <h3>Overall Average Stress without ChatGPT</h3>
+                
+                <div className="summary-grid">
+                  <div>
+                    <p>Student Attempts</p>
+                    <h4>{statistics.withoutGpt.totalAttempts}</h4>
+                  </div>
+                  <div>
+                    <p>Final Stress Level</p>
+                    <h4 className="stress">{statistics.withoutGpt.stressLevel}</h4>
+                  </div>
+                </div>
+
+                <div className="two-col">
+                  <div>
+                    <h4>Blood Pressure</h4>
+                    <p>Average BP <span>{statistics.withoutGpt.avgBP}</span></p>
+                  </div>
+                  <div>
+                    <h4>Heart Rate Variability</h4>
+                    <p>Average HR <span>{statistics.withoutGpt.avgHeartRate} bpm</span></p>
+                    <p>Average SDNN <span>-</span></p>
+                    <p>Average RMSSD <span>-</span></p>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* STUDENT DETAILS */}
+            <div className="card">
+              <h3>Student Details ({filteredReports.length})</h3>
+              
+              <div className="student-list">
+                {filteredReports.map((item, index) => {
+                  const isGpt = Number(item.gptindex) === 1;
+                  const sl = stressMap[item.stressLevel] || 'Unknown';
+                  const slColor = sl === 'High' ? '#ef4444' : sl === 'Medium' ? '#f59e0b' : '#10b981';
+                  
+                  return (
+                    <div key={index} className="student-card">
+                      <div className="student-card-header">
+                        <div className="student-name">
+                          <User size={16} color="var(--ssr-cyan)" /> {item.student_name}
+                        </div>
+                        <div className="badge" style={{
+                            backgroundColor: isGpt ? '#E3F2FD' : '#F3E5F5',
+                            color: isGpt ? '#1976D2' : '#7B1FA2'
+                          }}>
+                          {isGpt ? 'With ChatGPT' : 'Without ChatGPT'}
+                        </div>
+                      </div>
+                      
+                      <div>
+                        <div className="info-row"><span>Gender</span> <strong>{item.gender}</strong></div>
+                        <div className="info-row"><span>CGPA</span> <strong>{item.cgpa}</strong></div>
+                        <div className="info-row"><span>Semester</span> <strong>{item.semester}</strong></div>
+                      </div>
+                      
+                      <div>
+                        <h4 className="bio-title">Biometric Data</h4>
+                        <div className="info-row"><span>BP</span> <strong>{item.bp}</strong></div>
+                        <div className="info-row"><span>HR</span> <strong>{parseFloat(item.heartRate).toFixed(2)} bpm</strong></div>
+                        <div className="info-row"><span>SDNN</span> <strong>{parseFloat(item.sdnn).toFixed(2)}</strong></div>
+                        <div className="info-row"><span>RMSSD</span> <strong>{parseFloat(item.rmssd).toFixed(2)}</strong></div>
+                        <div className="info-row"><span>SI</span> <strong>{parseFloat(item.si).toFixed(2)}</strong></div>
+                        <div className="info-row" style={{border: 'none', marginBottom: 0}}>
+                          <span>Stress Level</span> <strong style={{color: slColor}}>{sl}</strong>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </>
+        ) : !filterLoading ? (
+          <div className="card">
+            <p className="empty-state">Apply filters to view student reports</p>
+          </div>
+        ) : null}
+
       </div>
     </div>
   );
 };
 
-
 export default ReportQuestion;
-
